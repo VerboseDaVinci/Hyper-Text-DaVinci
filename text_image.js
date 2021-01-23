@@ -21,6 +21,17 @@ function onClickConvert(){
     canvasContext.clearRect(0,0,canvas.width,canvas.height) // Clear It
 
     canvasContext.font="30px Arial"; // Set Font
-    canvasContext.fillText(text.value, 10, 50);
+    canvasContext.fillText(text.value, 10, 50); // Add the text
+
+    // Create Downloadable image png
+    var link = document.createElement('a');
+    link.innerHTML = 'Download Image';
+    link.addEventListener('click', function(ev) {
+        link.href = canvas.toDataURL();
+        link.download = "mypainting.png";
+    }, false);
+    document.body.appendChild(link);
+
     console.log(text.value);
+
 }
