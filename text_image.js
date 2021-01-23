@@ -1,5 +1,6 @@
 // Add Text to image
 
+
 function onClickConvert(){
     let text = document.getElementById("input-text");
     let canvas = document.getElementById("canvasOutput");
@@ -9,6 +10,8 @@ function onClickConvert(){
 
     canvasContext.font="30px Arial"; // Set Font
     //canvasContext.fillText(text.value, 10, 50); // Add the text
+
+    resizeCanvas(canvas, text.value)
 
     wrapText(canvas, text.value);
 
@@ -28,6 +31,10 @@ function createDownload(canvas){
     }, false);
 }
 
+function getLineHeight(ctx) {
+    return parseInt(ctx.font.split('px')[0]);;
+}
+
 function wrapText(canvas, str){
     /**
      * for letter in text{
@@ -41,7 +48,7 @@ function wrapText(canvas, str){
      * }
      */
     let ctx = canvas.getContext('2d');
-    let lineHeight = parseInt(ctx.font.split('px')[0]);
+    let lineHeight = getLineHeight(ctx);
 
     let x = lineHeight;
     let y = lineHeight;
@@ -54,11 +61,9 @@ function wrapText(canvas, str){
         var metric = ctx.measureText(letter);
 
 
-        if (x > canvas.width){
+        if (x > canvas.width - lineHeight){
             y+=lineHeight;
-            x=0;
-            console.log (y);
-            console.log(line);
+            x=lineHeight;
             line = "";
         }
         line += letter;
@@ -70,6 +75,21 @@ function wrapText(canvas, str){
     }
 
 
+}
+
+function resizeCanvas(canvas, str) {
+    let ctx = canvas.getContext('2d')
+
+    let charWidth = ctx.measureText("abcdefghijklmnopqrstuvwxyz").width/26;
+    let charHeight = getLineHeight(ctx);
+
+    let xRatio = canvas.width / charWidth
+    let yRatio = canvas.height / charHeight
+
+    let scaleFactor = str.length/(xRatio*yRatio)
+
+    canvas.width = canvas.width * scaleFactor;
+    canvas.height = canvas.height * scaleFactor;
 }
 
 /**
