@@ -2,11 +2,10 @@
 
 function convertImage(img) {
     let dst = new cv.Mat();
+    let dst2 = new cv.Mat();
     cv.cvtColor(img, dst, cv.COLOR_RGBA2GRAY, 0);
-    cv.threshold(255, dis)
-    //cv2.threshold(img, thresh, 255, cv2.THRESH_BINARY)[1]
-    // 👾
-    return dst
+    cv.threshold(dst, dst2, 128, 255, cv.THRESH_BINARY);
+    return dst2
 }
 
 function helloworld() {
