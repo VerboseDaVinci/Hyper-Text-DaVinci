@@ -1,0 +1,1 @@
+// Make image simple
