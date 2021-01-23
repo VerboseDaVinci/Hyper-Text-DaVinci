@@ -36,7 +36,7 @@
   }, false);
   imgElement.onload = function() {
     let mat = cv.imread(imgElement);
-    mat = convertImage(mat)
+    mat = convertImage(imgElement)
     cv.imshow('canvasOutput', mat);
     mat.delete();
   };
