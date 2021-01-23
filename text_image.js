@@ -15,10 +15,10 @@ function imageToText(){
 
 function onClickConvert(){
     let text = document.getElementById("input-text");
-    let canvas = document.getElementById("text-canvas");
+    let canvas = document.getElementById("canvasOutput");
     let canvasContext = canvas.getContext('2d');
 
-    canvasContext.clearRect(0,0,canvas.width,canvas.height) // Clear It
+    //canvasContext.clearRect(0,0,canvas.width,canvas.height) // Clear It
 
     canvasContext.font="30px Arial"; // Set Font
     canvasContext.fillText(text.value, 10, 50); // Add the text
