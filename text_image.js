@@ -24,13 +24,11 @@ function onClickConvert(){
     canvasContext.fillText(text.value, 10, 50); // Add the text
 
     // Create Downloadable image png
-    var link = document.createElement('a');
-    link.innerHTML = 'Download Image';
+    let link = document.getElementById('download-anchor');
     link.addEventListener('click', function(ev) {
         link.href = canvas.toDataURL();
-        link.download = "mypainting.png";
+        link.download = "davincis-masterpiece.png";
     }, false);
-    document.body.appendChild(link);
 
     console.log(text.value);
 
