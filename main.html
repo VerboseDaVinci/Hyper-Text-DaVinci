@@ -3,10 +3,16 @@
 <head>
   <meta charset="utf-8">
   <title>Hello OpenCV.js</title>
+
 </head>
 <body>
 <h2>Hello OpenCV.js</h2>
 <p id="status">OpenCV.js is loading...</p>
+<div>
+  <input type="text" id="input-text">
+  <button type="button" onclick="onClickConvert();">Convert</button>
+  <canvas id="text-canvas" width="200" height="200" style="border:2px solid #474c6a;">Hello</canvas>
+</div>
 <div>
   <div class="inputoutput">
     <img id="imageSrc" alt="No Image" />
@@ -34,7 +40,7 @@
 </script>
 <script async src="opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
 <script async src="convert_image.js" type="text/javascript"></script>
-<script async src="text_image.js" type="text/javascript"></script>
+<script src="text_image.js" type="text/javascript"></script>
 
 </body>
 </html>
