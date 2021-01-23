@@ -1,14 +1,20 @@
 // Make image simple
 
 function convertImage(img) {
-    let dst = new cv.Mat();
-    cv.cvtColor(img, dst, cv.COLOR_RGBA2GRAY, 0);
-    cv.threshold(255, dis)
-    //cv2.threshold(img, thresh, 255, cv2.THRESH_BINARY)[1]
-    // 👾
-    return dst
-}
+    let dstr = new cv.Mat();
+    let dstg = new cv.Mat();
+    let dstb = new cv.Mat();
+    let rgbaPlanes = new cv.MatVector();
+    cv.split(img, rgbaPlanes);
 
-function helloworld() {
-    hello()
+
+    // cv.cvtColor(img, dst, cv.COLOR_RGBA2GRAY, 0);
+    // cv.inRange(img, low, high, dst);
+    cv.threshold(rgbaPlanes.get(0), dstr, 128, 255, cv.THRESH_BINARY);
+    cv.threshold(rgbaPlanes.get(1), dstg, 128, 255, cv.THRESH_BINARY);
+    cv.threshold(rgbaPlanes.get(2), dstb, 128, 255, cv.THRESH_BINARY);
+    cv.imshow('canvasR', dstr);
+    cv.imshow('canvasG', dstg);
+    cv.imshow('canvasB', dstb);
+    return dstr
 }
