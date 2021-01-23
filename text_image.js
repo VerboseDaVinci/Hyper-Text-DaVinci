@@ -8,13 +8,15 @@ function onClickConvert(){
     //canvasContext.clearRect(0,0,canvas.width,canvas.height) // Clear It
 
     canvasContext.font="30px Arial"; // Set Font
-    canvasContext.fillText(text.value, 10, 50); // Add the text
+    //canvasContext.fillText(text.value, 10, 50); // Add the text
+
+    wrapText(canvas, text.value);
 
     // Create Downloadable image png
     createDownload(canvas)
 
 
-    console.log(text.value);
+    //console.log(text.value);
 
 }
 
@@ -26,7 +28,7 @@ function createDownload(canvas){
     }, false);
 }
 
-function wrapText(canvas, text){
+function wrapText(canvas, str){
     /**
      * for letter in text{
          * if x > canvas_width{
@@ -38,21 +40,33 @@ function wrapText(canvas, text){
      * x+= char_width
      * }
      */
-    var x = 0;
-    var y = 0;
+    let ctx = canvas.getContext('2d');
+    let lineHeight = parseInt(ctx.font.split('px')[0]);
+
+    let x = lineHeight;
+    let y = lineHeight;
     let letter = " "
 
-    let ctx = canvas.getContext('2d')
-    let lineHeight = ctx.font
 
-    console.log
+    let line = "";
+    for (var i = 0; i < str.length; i++) {
+        letter = str.charAt(i);
+        var metric = ctx.measureText(letter);
 
-    for (var i = 0; i < text.length; i++) {
-        letter = text.charAt(i);
 
         if (x > canvas.width){
-
+            y+=lineHeight;
+            x=0;
+            console.log (y);
+            console.log(line);
+            line = "";
         }
+        line += letter;
+        ctx.fillText(letter, x, y);
+
+        x+= metric.width;
+
+
     }
 
 
@@ -66,8 +80,7 @@ function wrapText(canvas, text){
  * @param y
  * @return Return if the character has been successfully drawn at position, if not return false
  */
-function drawLetter(canvas, char, x, y){
-    let ctx = canvas.getContext('2d')
+function drawLetter(ctx, char, x, y){
     ctx.fillText(char,x,y)
     return true
 }
