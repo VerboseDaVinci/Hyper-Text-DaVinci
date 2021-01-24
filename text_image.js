@@ -40,7 +40,7 @@ function onClickConvert(){
 function createDownload(canvas){
     let link = document.getElementById('download-anchor');
     link.addEventListener('click', function(ev) {
-        link.href = canvas.toDataURL();
+        link.href = textCanvas.toDataURL();
         link.download = "davincis-masterpiece.png";
     }, false);
 }
@@ -101,7 +101,6 @@ function getColor(canvas, x,y){
     let data = ctx.getImageData(colorX, colorY, 1, 1).data
     let colorHex = rgbToHex(data[0],data[1],data[2])
     //"#fe3482"
-    console.log(colorHex);
     return colorHex;
 }
 
@@ -114,10 +113,12 @@ function resizeCanvas(inputCanvas, outputCanvas, str) {
     let xRatio = inputCanvas.width / charWidth
     let yRatio = inputCanvas.height / charHeight
 
-    scaleFactor = str.length/(xRatio*yRatio)
-
+    scaleFactor = Math.sqrt(str.length/(xRatio*yRatio));
+    console.log("sqrt man");
     outputCanvas.width = inputCanvas.width * scaleFactor;
     outputCanvas.height = inputCanvas.height * scaleFactor;
+
+    console.table({charWidth, charHeight, xRatio, yRatio, scaleFactor})
 
     outputCanvas.getContext('2d').font = ctx.font;
 }
