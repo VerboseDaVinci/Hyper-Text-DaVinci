@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <style>
     .content {
-        max-width: 500px;
         margin: auto;
         text-align: center;
     }
@@ -10,11 +9,12 @@
 <head>
     <meta charset="utf-8">
     <title>Verbose DaVinci</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="content">
 <h2 class="content">Verbose DaVinci</h2>
-<div>
-    <input type="text" id="input-text">
+<div class="content">
+    <input type="text" id="input-text" size="30" height="20">
     <button type="button" onclick="onClickConvert();">Add Text</button>
     <a id="download-anchor">
         <button type="button" id="download-button">Download</button>
@@ -27,9 +27,9 @@
     </div>
     <div class="inputoutput">
         <canvas id="canvasOutput"></canvas>
-        <canvas id="canvasR"></canvas>
-        <canvas id="canvasG"></canvas>
-        <canvas id="canvasB"></canvas>
+    </div>
+    <div class="textoutputcanvas">
+        <canvas id="textOutput"></canvas>
     </div>
 </div>
 
