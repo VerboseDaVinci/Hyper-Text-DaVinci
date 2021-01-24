@@ -1,6 +1,6 @@
 // Make image simple
 
-function convertImage(img) {
+function convertImage(img, numColors) {
 
     // let dstr = new cv.Mat();
     // let dstg = new cv.Mat();
@@ -19,7 +19,7 @@ function convertImage(img) {
     // cv.imshow('canvasB', dstb);
 
     let pixels = get_pixel_dataset(img, MAX_K_MEANS_PIXELS);
-    let centroids = k_means(pixels, 4);
+    let centroids = k_means(pixels, numColors);
     let quantized_img = quantize(img, centroids)
     let mat = cv.matFromImageData(quantized_img)
     return mat;

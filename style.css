@@ -3,3 +3,45 @@ div{
     margin: auto;
     text-align: center;
 }
+
+
+.content {
+    margin: auto;
+padding-bottom: 5p;
+    text-align: center;
+}
+.grid-container {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+.box-container{
+    flex: 1;
+}
+.banner {
+    background-color: #3c000d;
+}
+
+label{
+    padding-left: 8px;
+}
+
+.header {
+    margin: 20px auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    background-color: #edb08f;
+    color:  #3c000d;
+    font-size: 40px;
+}
+
+.text-area{
+    margin: 8px;
+    min-width: 600px;
+    height: 150px;
+}
+
+body {
+    background-color: #fff5df;
+}

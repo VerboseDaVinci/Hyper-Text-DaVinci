@@ -23,7 +23,6 @@ function onClickConvert() {
     let fontSize = document.getElementById('font-input').value;
 
     //canvasContext.clearRect(0,0,canvas.width,canvas.height) // Clear It
-    console.log({fontSize})
     canvasContext.font = fontSize + "px Arial"; // Set Font
     //canvasContext.fillText(text.value, 10, 50); // Add the text
 
@@ -44,6 +43,9 @@ function createDownload(canvas) {
         link.href = textCanvas.toDataURL();
         link.download = "davincis-masterpiece.png";
     }, false);
+
+    let button = document.getElementById("download-button");
+    button.disabled=false;
 }
 
 function getLineHeight(ctx) {
@@ -120,11 +122,8 @@ function resizeCanvas(inputCanvas, outputCanvas, str) {
     let yRatio = inputCanvas.height / charHeight;
 
     scaleFactor = Math.sqrt(str.length / (xRatio * yRatio));
-    console.log("sqrt man");
     outputCanvas.width = inputCanvas.width * scaleFactor;
     outputCanvas.height = inputCanvas.height * scaleFactor;
-
-    console.table({charWidth, charHeight, xRatio, yRatio, scaleFactor});
 
     outputCanvas.getContext('2d').font = ctx.font;
 }
@@ -141,11 +140,8 @@ function smartResizeCanvas(inputCanvas, outputCanvas, str) {
     let yRatio = inputCanvas.height / charHeight;
 
     scaleFactor = Math.sqrt(str.length / (xRatio * yRatio * pixelRatio));
-    console.log("sqrt man 2: electric boogaloo");
     outputCanvas.width = inputCanvas.width * scaleFactor;
     outputCanvas.height = inputCanvas.height * scaleFactor;
-
-    console.table({charWidth, charHeight, xRatio, yRatio, scaleFactor});
 
     outputCanvas.getContext('2d').font = ctx.font;
 }
@@ -178,7 +174,6 @@ function getValidPixelRatio() {
     }
 
     let pixelRatio = 1 - (invalidPixels / (width * height));
-    console.log({pixelRatio, invalidPixels})
     return pixelRatio;
 
 }
