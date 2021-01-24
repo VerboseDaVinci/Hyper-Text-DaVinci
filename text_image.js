@@ -67,6 +67,7 @@ function wrapText(canvas, str){
             line = "";
         }
         line += letter;
+
         ctx.fillText(letter, x, y);
 
         x+= metric.width;
@@ -76,6 +77,7 @@ function wrapText(canvas, str){
 
 
 }
+
 
 function resizeCanvas(canvas, str) {
     let ctx = canvas.getContext('2d')
