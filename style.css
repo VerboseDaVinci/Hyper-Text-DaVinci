@@ -45,3 +45,15 @@ label{
 body {
     background-color: #fff5df;
 }
+
+.small{
+    width: 32px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.jumper{
+    color: #0000;
+}
