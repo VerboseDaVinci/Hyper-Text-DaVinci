@@ -19,10 +19,11 @@ function onClickConvert(){
     let colorCanvas = document.getElementById("canvasOutput");
     let textCanvas = document.getElementById("textOutput")
     let canvasContext = colorCanvas.getContext('2d');
+    let fontSize = document.getElementById('font-input').value
 
     //canvasContext.clearRect(0,0,canvas.width,canvas.height) // Clear It
-
-    canvasContext.font="10px Arial"; // Set Font
+    console.log({fontSize})
+    canvasContext.font = fontSize + "px Arial"; // Set Font
     //canvasContext.fillText(text.value, 10, 50); // Add the text
 
     resizeCanvas(colorCanvas, textCanvas, text.value)
@@ -122,6 +123,45 @@ function resizeCanvas(inputCanvas, outputCanvas, str) {
 
     outputCanvas.getContext('2d').font = ctx.font;
 }
+
+function smartResizeCanvas(inputCanvas, outputCanvas, str){
+    let ctx = inputCanvas.getContext('2d')
+
+    let charWidth = ctx.measureText(str).width/str.length;
+    let charHeight = getLineHeight(ctx);
+
+    let xRatio = inputCanvas.width / charWidth
+    let yRatio = inputCanvas.height / charHeight
+
+    scaleFactor = Math.sqrt(str.length/(xRatio*yRatio));
+    console.log("sqrt man");
+    outputCanvas.width = inputCanvas.width * scaleFactor;
+    outputCanvas.height = inputCanvas.height * scaleFactor;
+
+    console.table({charWidth, charHeight, xRatio, yRatio, scaleFactor})
+
+    outputCanvas.getContext('2d').font = ctx.font;
+}
+
+function getAvgXY(){
+let width = colorCanvas.width;
+let height = colorCanvas.height;
+
+    /**
+     *
+     * let xs = [];
+     * ley ys = [];
+     * for(int i = 0; i < width; i++){
+     *     ley yVal =0;
+     *     for(int j = 0; j < height; j++>){
+     *      yVal +=
+     *     }
+     * }
+     */
+    return true;
+
+}
+
 
 /**
  * Draw character at selected position
