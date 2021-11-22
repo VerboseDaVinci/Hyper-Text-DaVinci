@@ -5,6 +5,18 @@ let colorCanvas = document.getElementById("canvasOutput");
 let textCanvas = document.getElementById("textOutput");
 let ignoreColor = "#ffffffff"
 
+WebFont.load({
+    google: {
+        families: ['Open Sans:300,400']
+    },
+    loading: function() {
+        console.log("Fonts are being loaded");
+    },
+    active: function() {
+        console.log("Fonts have been rendered")
+    }
+});
+// console.log("Hello")
 
 function componentToHex(c) {
     var hex = c.toString(16);
@@ -23,9 +35,9 @@ function onClickConvert() {
     let fontSize = document.getElementById('font-input').value;
 
     //canvasContext.clearRect(0,0,canvas.width,canvas.height) // Clear It
-    canvasContext.font = fontSize + "px Arial"; // Set Font
+    canvasContext.font = fontSize + "px OpenSans"; // Set Font
     //canvasContext.fillText(text.value, 10, 50); // Add the text
-
+    console.log(canvasContext.font)
     smartResizeCanvas(colorCanvas, textCanvas, text.value);
 
     wrapText(textCanvas, text.value);
@@ -33,7 +45,7 @@ function onClickConvert() {
     createDownload(colorCanvas);
 
 
-    //console.log(text.value);
+    // console.log(text.value);
 
 }
 
@@ -67,10 +79,11 @@ function wrapText(canvas, str) {
     let ctx = canvas.getContext('2d');
     let lineHeight = getLineHeight(ctx);
 
-    let x = lineHeight;
+    // let x = lineHeight;
+    let x = canvas.width - lineHeight;
     let y = lineHeight;
     let letter = " ";
-
+    console.log({x})
 
     let line = "";
     for (var i = 0; i < str.length; i++) {
@@ -81,21 +94,25 @@ function wrapText(canvas, str) {
             break;
         }
 
-        if (x > canvas.width - lineHeight) {
+        if (x < lineHeight) {
+        // if (x > canvas.width - lineHeight) {
             y += lineHeight;
-            x = lineHeight;
+            // x = lineHeight;
+            x =  canvas.width - lineHeight;
             line = "";
         }
-        line += letter;
+        line = letter + line;
 
         if (!drawLetter(colorCanvas, letter, x, y)){
             i--;
         };
 
-        x += metric.width;
+        // x += metric.width;
+        x -= metric.width;
 
 
     }
+    console.log({line})
 
 
 }
